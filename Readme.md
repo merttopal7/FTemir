@@ -129,9 +129,6 @@ This will compile the project into a single binary using Bun’s compiler.
     - for inspiration regarding maintainability, packet handling concepts and overall architecture
     - project repository: https://github.com/ducksoup-sro/ducksoup
 
-- qqdev
-    - for the kind words, the motivation and helping me with questions
-
 - [Devsome](https://github.com/Devsome/)
     - for the kind words, the motivation and ideas
     - Silkroad Laravel project: https://github.com/Devsome/silkroad-laravel
@@ -147,6 +144,3 @@ This will compile the project into a single binary using Bun’s compiler.
 - [DaxterSoul](https://www.elitepvpers.com/forum/members/1084164-daxtersoul.html)
     - for the SilkroadDocs
     - documentation repository: https://github.com/DummkopfOfHachtenduden/SilkroadDoc/
-
-- Chernobyl
-    - for the idea and the PacketHandler concept
