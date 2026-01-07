@@ -32,7 +32,6 @@ There are no hidden serializers, no reflection, and no runtime guessing.
 ## Key Features
 
 - ⚡ **High performance** packet processing
-- 🧠 **Schema-based packets** (AutoRead / AutoBuild friendly)
 - 🔒 **Type-safe fields** (byte, short, int, string, enums, flags)
 - 🔁 **Reusable packet components**
 - 🧩 Clean separation between **packet logic** and **business logic**
@@ -48,3 +47,9 @@ Packets in FTemir are defined using strongly-typed field descriptors:
 hasShardEntries = byte();
 shardId = short();
 shardName = stringASCII();
+
+this.TryRead(shardName);
+this.TryRead(byte()); // for unnecessary fields
+
+shardName.set("Test");
+this.TryWrite(shardName);
