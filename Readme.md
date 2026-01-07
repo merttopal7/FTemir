@@ -53,3 +53,43 @@ this.TryRead(byte()); // for unnecessary fields
 
 shardName.set("Test");
 this.TryWrite(shardName);
+
+---
+
+## Requirements
+
+- **Bun** (v1.3+ recommended)
+- Windows or Linux (x64)
+- Silkroad Online v188 protocol knowledge (recommended)
+
+You can install Bun from:  
+https://bun.sh
+
+---
+
+## Project Structure
+
+```txt
+.
+├─ src/
+│  ├─ index.ts        # Entry point
+│  ├─ core/           # Packet, stream, schema system
+│  ├─ modules/        # Gateway / Agent / Download logic
+│  └─ utils/
+├─ package.json
+└─ README.md
+
+---
+
+## Running FTemir (Development)
+
+To run FTemir in development mode:
+```txt
+bun install
+bun run src/index.ts
+```
+or using the script:
+```txt
+bun run start
+```
+This will start the packet filter directly from source.
