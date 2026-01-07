@@ -1,5 +1,4 @@
 import { Packet, StaticTypes } from "@/core";
-import { StaticType } from "@/core/types";
 const { bool, byte, int, short, string, stringASCII } = StaticTypes;
 
 export class SERVER_GATEWAY_LOGIN_IBUV_CHALLENGE extends Packet {
