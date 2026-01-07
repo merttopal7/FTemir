@@ -1,8 +1,4 @@
 export default {
-  module: 'GatewayServer',
-  CAPTCHA: '0',
-  FAKE_PLAYERS: 0,
-  HWID_LIMIT: 4,
   LOCAL: {
     HOST: '127.0.0.1',
     PORT: 9007
@@ -10,16 +6,6 @@ export default {
   REMOTE: {
     HOST: '54.37.80.146',
     PORT: 9001
-  },
-  REDIRECT: {
-    AgentServer: {
-      HOST: '54.37.80.146',
-      PORT: 9003
-    },
-    DownloadServer: {
-      HOST: '54.37.80.146',
-      PORT: 9002
-    },
   },
   whitelist: {
     0x2002: 'GLOBAL_PING',
