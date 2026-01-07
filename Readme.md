@@ -9,9 +9,6 @@ The project is built from scratch with a modern architecture, aiming to provide 
 extensible, and developer-friendly filtering system without unnecessary abstractions or magic.  
 FTemir prioritizes **clarity and correctness over feature bloat**.
 
-Unlike traditional filters, FTemir uses a **schema-based packet design** with explicit read/write  
-definitions, making packet logic easy to reason about and hard to misuse.
-
 ---
 
 ## Core Philosophy
