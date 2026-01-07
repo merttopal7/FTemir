@@ -6,13 +6,13 @@ export class SERVER_GATEWAY_SHARD_LIST_RESPONSE extends Packet {
     static opcode = 0xA101;
     constructor() { super(SERVER_GATEWAY_SHARD_LIST_RESPONSE.opcode); }
 
-    readonly hasFarmEntries = byte();
-    readonly hasShardEntries = byte();
-    readonly Farm: Farm = {
+    hasFarmEntries = byte();
+    hasShardEntries = byte();
+    Farm: Farm = {
         Id: byte(),
         Name: string()
     };
-    readonly Shard: Shard = {
+    Shard: Shard = {
         Id: short(),
         Name: stringASCII(),
         OnlineCount: short(),
@@ -20,8 +20,8 @@ export class SERVER_GATEWAY_SHARD_LIST_RESPONSE extends Packet {
         Status: byte(),
         FarmId: byte(),
     };
-    readonly unkFarmEntries = byte();
-    readonly unkShardEntries = byte();
+    unkFarmEntries = byte();
+    unkShardEntries = byte();
 
     Read() {
         this.TryRead(this.hasFarmEntries);

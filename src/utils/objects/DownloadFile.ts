@@ -1,24 +1,25 @@
-import { Packet } from "@/core/Packet";
+import { Packet, StaticTypes } from "@/core";
+const { bool, byte, int, short, string, stringASCII } = StaticTypes;
 
 export class DownloadFile {
-    Id: number;
-    Length: number;
-    Name: string;
-    Path: string;
-    ToBePacket: number;
+    Id = int();
+    Length = int();
+    Name = string();
+    Path = string();
+    ToBePacket = byte();
     constructor(packet: Packet) {
-        this.Id = packet.reader.uint32();
-        this.Length = packet.reader.uint32();
-        this.Name = packet.reader.string();
-        this.Path = packet.reader.string();
-        this.ToBePacket = packet.reader.uint8();
+        packet.TryRead(this.Id);
+        packet.TryRead(this.Length);
+        packet.TryRead(this.Name);
+        packet.TryRead(this.Path);
+        packet.TryRead(this.ToBePacket);
     }
     Build(packet: Packet) {
-        packet.reader.uint32(this.Id);
-        packet.reader.uint32(this.Length);
-        packet.reader.string(this.Name);
-        packet.reader.string(this.Path);
-        packet.reader.uint8(this.ToBePacket);
+        packet.TryWrite(this.Id);
+        packet.TryWrite(this.Length);
+        packet.TryWrite(this.Name);
+        packet.TryWrite(this.Path);
+        packet.TryWrite(this.ToBePacket);
         return packet;
     }
 }
