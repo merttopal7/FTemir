@@ -5,6 +5,11 @@ const { string, byte, int, short, stringASCII } = StaticTypes;
 
 
 export class DataHandler {
+    constructor(server?: ModuleRegistry) {
+        if (server)
+            this.register(server);
+
+    }
 
     register(server: ModuleRegistry) {
         server.RegisterModuleHandler(SERVER_GATEWAY_SHARD_LIST_RESPONSE, this.ON_SERVER_GATEWAY_SHARD_LIST_RESPONSE);
