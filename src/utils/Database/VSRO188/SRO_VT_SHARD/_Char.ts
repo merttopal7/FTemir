@@ -82,30 +82,31 @@ export class _Char {
 
   HwanLevel!: number;
 
-  get RefObjCommon(): _RefObjCommon {
+  getRefObjCommon(): _RefObjCommon {
     if (this._refObjCommon) return this._refObjCommon;
 
-    this._refObjCommon = FTemir.Cache.get<Array<_RefObjCommon>>("_RefObjCommon")?.find(obj => obj.ID = this.RefObjID);
+    this._refObjCommon = FTemir.Cache.get<Array<any>>("_RefObjCommon")?.find(obj => obj.ID == this.RefObjID);
+
     return this._refObjCommon;
   }
 
-  get RefObjChar(): _RefObjChar | undefined {
-    if (this._refObjChar) return this._refObjChar;
+  getRefObjChar(): _RefObjChar | undefined {
+    this.getRefObjCommon();
 
-    const link = this.RefObjCommon?.Link;
+    const link = this._refObjCommon?.Link;
     if (link == null) return undefined;
 
-    this._refObjChar =  FTemir.Cache.get<Array<_RefObjChar>>("_RefObjChar")?.find(obj => obj.ID = link);
+    this._refObjChar = FTemir.Cache.get<Array<_RefObjChar>>("_RefObjChar")?.find(obj => obj.ID == link);
     return this._refObjChar;
   }
 
   // ===== Helpers =====
 
   IsMale(): boolean {
-    return this.RefObjChar?.CharGender === 1;
+    return this.getRefObjChar()?.CharGender === 1;
   }
 
   IsFemale(): boolean {
-    return this.RefObjChar?.CharGender === 0;
+    return this.getRefObjChar()?.CharGender === 0;
   }
 }
