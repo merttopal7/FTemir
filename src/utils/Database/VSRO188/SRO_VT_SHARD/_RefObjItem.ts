@@ -112,8 +112,14 @@ export class RefObjItem {
 
   public async getRefObjCommon(): Promise<RefObjCommon> {
     if (!this._refObjCommon) {
-      this._refObjCommon = FTemir.Cache.get<Array<_RefObjCommon>>("_RefObjCommon").find(c => c.Link === this.ID);
+      if (FTemir.Cache.Cached)
+            this._refObjCommon = FTemir.Cache.get<Array<_RefObjCommon>>("_RefObjCommon").find(c => c.Link === this.ID);
+          else {
+            const Shard = Database.SRO_VT_SHARD();
+            this._refObjCommon = Object.assign(new _RefObjCommon(), await Shard("_RefObjCommon").where("Link", this.ID).first());
+          }
     }
+    
     return this._refObjCommon;
   }
 

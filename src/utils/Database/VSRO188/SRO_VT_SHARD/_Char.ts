@@ -1,11 +1,18 @@
 import { FTemir } from "@/FTemir/index.js";
 import { _RefObjChar } from "./_RefObjChar.ts";
 import { _RefObjCommon } from "./_RefObjCommon";
+import { Database } from "../../index.js";
+import { BaseModel } from "../../BaseModel/index.js";
 
-export class _Char {
+export class _Char extends BaseModel<_Char> {
+  static TableName = "_Char"
   private _refObjChar?: _RefObjChar;
   private _refObjCommon?: _RefObjCommon;
 
+  static query() {
+    const Shard = Database.SRO_VT_SHARD();
+    return Shard(_Char.TableName)
+  }
   CharID!: number;
   Deleted!: number;
 
@@ -82,31 +89,40 @@ export class _Char {
 
   HwanLevel!: number;
 
-  getRefObjCommon(): _RefObjCommon {
+  async getRefObjCommon(): Promise<_RefObjCommon> {
     if (this._refObjCommon) return this._refObjCommon;
-
-    this._refObjCommon = FTemir.Cache.get<Array<any>>("_RefObjCommon")?.find(obj => obj.ID == this.RefObjID);
-
+    if (FTemir.Cache.Cached)
+      this._refObjCommon = FTemir.Cache.get<Array<_RefObjCommon>>("_RefObjCommon")?.find(obj => obj.ID == this.RefObjID);
+    else {
+      const Shard = Database.SRO_VT_SHARD();
+      this._refObjCommon = Object.assign(new _RefObjCommon(), await Shard("_RefObjCommon").where("ID", this.RefObjID).first());
+    }
     return this._refObjCommon;
   }
 
-  getRefObjChar(): _RefObjChar | undefined {
-    this.getRefObjCommon();
+  async getRefObjChar(): Promise<_RefObjChar | undefined> {
+    await this.getRefObjCommon();
 
     const link = this._refObjCommon?.Link;
     if (link == null) return undefined;
 
-    this._refObjChar = FTemir.Cache.get<Array<_RefObjChar>>("_RefObjChar")?.find(obj => obj.ID == link);
+
+    if (FTemir.Cache.Cached)
+      this._refObjChar = FTemir.Cache.get<Array<_RefObjChar>>("_RefObjChar")?.find(obj => obj.ID == link);
+    else {
+      const Shard = Database.SRO_VT_SHARD();
+      this._refObjChar = Object.assign(new _RefObjCommon(), await Shard("_RefObjChar").where("ID", link).first());
+    }
     return this._refObjChar;
   }
 
   // ===== Helpers =====
 
-  IsMale(): boolean {
-    return this.getRefObjChar()?.CharGender === 1;
+  async IsMale(): Promise<boolean> {
+    return (await this.getRefObjChar())?.CharGender === 1;
   }
 
-  IsFemale(): boolean {
-    return this.getRefObjChar()?.CharGender === 0;
+  async IsFemale(): Promise<boolean> {
+    return (await this.getRefObjChar())?.CharGender === 0;
   }
 }
