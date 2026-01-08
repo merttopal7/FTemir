@@ -72,9 +72,6 @@ export class CharInfo {
         this._packet.TryRead(this.PvpCape);
         this._packet.TryRead(this.inventorySize);
         this._packet.TryRead(this.inventoryItemCount);
-        console.log("OKUNAN", this.RefObjId.get(), this.ServerTime.get())
-
-
     }
 
 }

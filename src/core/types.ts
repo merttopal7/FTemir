@@ -1,5 +1,6 @@
 import type { Socket } from "net";
 import type { Packet } from "@/core/Packet";
+import type { Knex } from "knex";
 import { Session } from "@/core/Session/Session";
 
 export type ReadHolder =
@@ -162,3 +163,5 @@ export interface ProxyContext {
   };
   services: Record<string, any>;
 }
+
+export type DatabaseAdapters = Partial<Record<string, Knex>>;
