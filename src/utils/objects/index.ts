@@ -1,7 +1,7 @@
-import { HostAndPort } from "@/utils/objects/HostAndPort";
-import { MaxCurAttempts } from "@/utils/objects/MaxCurAttempts";
-import { Punishment } from "@/utils/objects/Punishment";
-import { DownloadFile } from "@/utils/objects/DownloadFile";
+import { HostAndPort } from "@/utils/Objects/HostAndPort";
+import { MaxCurAttempts } from "@/utils/Objects/MaxCurAttempts";
+import { Punishment } from "@/utils/Objects/Punishment";
+import { DownloadFile } from "@/utils/Objects/DownloadFile";
 
 export {
     HostAndPort,

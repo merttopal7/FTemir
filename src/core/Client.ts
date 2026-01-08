@@ -1,4 +1,4 @@
-import { SilkroadSecurityJS as Security } from "@/utils/security/index";
+import { SilkroadSecurityJS as Security } from "@/utils/Security/index";
 import { Socket } from "net";
 
 class Client {

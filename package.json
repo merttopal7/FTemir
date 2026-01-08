@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "start": "bun run src/index.ts",
-    "build": "bun build --compile src/index.ts"
+    "start": "bun run index.ts",
+    "build": "bun build --compile index.ts"
   },
   "dependencies": {
   }

@@ -1,6 +1,7 @@
 import { Packet, Session, StaticTypes } from '@/core';
-import { ModuleRegistry, PacketResultType } from '@/utils/types'
+import { PacketResultType } from '@/utils/Types'
 import { SERVER_GATEWAY_SHARD_LIST_RESPONSE, SERVER_GATEWAY_LOGIN_RESPONSE, SERVER_GATEWAY_PATCH_RESPONSE, SERVER_GATEWAY_LOGIN_IBUV_CHALLENGE } from '@/modules/GatewayServer/actions';
+import { ModuleRegistry } from '@/core/types';
 const { string, byte, int, short, stringASCII } = StaticTypes;
 
 
@@ -49,8 +50,8 @@ export class DataHandler {
     async ON_SERVER_GATEWAY_LOGIN_RESPONSE(data: SERVER_GATEWAY_LOGIN_RESPONSE, session: Session) {
         console.log("LOGIN_RESPONSE", data.opcode);
 
-        data.AgentServer.Host.set("54.37.80.146");
-        data.AgentServer.Port.set(9003);
+        data.AgentServer.Host.set("127.0.0.1");
+        data.AgentServer.Port.set(9008);
 
         return data;
     };

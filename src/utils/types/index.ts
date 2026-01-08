@@ -13,6 +13,7 @@ export type Shard = {
   FarmId: StaticType<number>;
 };
 
+
 export const LoginErrorCode = {
   InvalidCredentials: 1,
   Blocked: 2,
@@ -49,3 +50,32 @@ export const PacketResultType = {
 
 export type PacketResultType =
   typeof PacketResultType[keyof typeof PacketResultType];
+
+
+export const PVPCape = {
+  None: 0,
+  Red: 1,
+  Gray: 2,
+  Blue: 3,
+  White: 4,
+  Yellow: 5
+} as const;
+
+export type PVPCape =
+  typeof PVPCape[keyof typeof PVPCape];
+
+export const AuthenticationErrorCode = {
+  /// <summary>
+  ///     <para>UIO_MSG_ERROR_SERVER_BUSY_CONNECT_IMPOSSIBILE</para>
+  ///     The server is full, please try again later.
+  /// </summary>
+  ServerIsFull: 4,
+
+  /// <summary>
+  ///     Cannot connect to the server because access to the current IP has exceeded its limit.
+  /// </summary>
+  IPLimit: 5
+}
+
+export type AuthenticationErrorCode =
+  typeof AuthenticationErrorCode[keyof typeof AuthenticationErrorCode];

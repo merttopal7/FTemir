@@ -1,6 +1,6 @@
 import type { Socket } from "net";
 import type { Packet } from "@/core/Packet";
-import { Session } from "@/core/Session";
+import { Session } from "@/core/Session/Session";
 
 export type ReadHolder =
   | { t: "byte"; value: number }
@@ -141,10 +141,16 @@ export interface ProxyEvent {
   session: Session;
 }
 
+
 export interface ModuleRegistry {
+  RegisterClientHandler<T>(
+    packetClass: PacketClass<T>,
+    handler: (packet: T, ctx?: any) => any
+  ): void;
+
   RegisterModuleHandler<T>(
-    packet: new () => T,
-    handler: (packet: T) => Promise<T | void> | T | void
+    packetClass: PacketClass<T>,
+    handler: (packet: T, ctx?: any) => any
   ): void;
 }
 

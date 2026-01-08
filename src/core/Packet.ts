@@ -1,14 +1,18 @@
-import { stream } from "@/utils/security/index";
-import { PacketResultType } from "@/utils/types";
+import { stream } from "@/utils/Security/index";
+import { PacketResultType } from "@/utils/Types";
 import { PacketReader, PacketWriter, RawPacket, StaticType } from "@/core/types";
 
 
 export abstract class Packet {
   opcode: number = null!;
   _packet!: RawPacket;
+  massive: boolean = false;
+  encrypted: boolean = false;
 
   reader!: PacketReader;
   writer!: PacketWriter;
+  _readerBytes!: number[];
+  _isReadOnly: boolean = false;
 
   ResultType: PacketResultType = PacketResultType.Nothing;
 
@@ -39,6 +43,24 @@ export abstract class Packet {
   TryWrite<T>(v: StaticType<T>): this {
     v.write(this.writer);
     return this;
+  }
+
+  InitializePacketReader() {
+    if (this.writer != null) {
+      this._readerBytes = this.writer.toData();
+      this.writer.buffer = [];
+    }
+    this.Reset();
+    this.reader = new stream.reader(this._readerBytes);
+  }
+
+  ToReadOnly() {
+    this.InitializePacketReader();
+    this._isReadOnly = true;
+  }
+
+  GetBytes() {
+    return this._isReadOnly ? this._readerBytes : this._packet.data;
   }
 
   abstract Read(): void | Promise<void>;

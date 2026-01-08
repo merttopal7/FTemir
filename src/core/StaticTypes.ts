@@ -1,7 +1,7 @@
 import { StaticType } from "./types";
 
 export const StaticTypes = {
-  byte<T extends number = number>(v?: T): StaticType<T>  {
+  byte<T extends number = number>(v?: T): StaticType<T> {
     return {
       value: v,
       read(r) { this.value = r.uint8(); },
@@ -41,6 +41,17 @@ export const StaticTypes = {
       set(v) { this.value = v; },
       get() { return this.value; },
       write(w) { w.uint32(this.value); },
+      valueOf() { return this.value; }
+    };
+  },
+
+  long(v = 0): StaticType<number> {
+    return {
+      value: v,
+      read(r) { this.value = r.uint64(); },
+      set(v) { this.value = v; },
+      get() { return this.value; },
+      write(w) { w.uint64(this.value); },
       valueOf() { return this.value; }
     };
   },

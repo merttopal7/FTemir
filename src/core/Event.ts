@@ -1,5 +1,5 @@
 import type { ProxyContext, ProxyEvent } from "@/core/types";
-import { PacketResultType } from "@/utils/types";
+import { PacketResultType } from "@/utils/Types";
 
 function CreateEventHandler(ctx: ProxyContext) {
   return async function Event(event: ProxyEvent): Promise<void> {

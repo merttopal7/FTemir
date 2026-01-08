@@ -1,6 +1,6 @@
 import Proxy from '@/core/Proxy';
 import configuration from '@/modules/GatewayServer/config';
-import { DataHandler } from "@/modules/GatewayServer/handlers/dataHandler";
+import { DataHandler } from "@/modules/GatewayServer/handlers/DataHandler";
 
 class GatewayServer extends Proxy {
     constructor() {

@@ -1,6 +1,6 @@
 import { Packet, StaticTypes } from "@/core";
-import { LoginErrorCode, LoginBlockType } from "@/utils/types";
-import { HostAndPort, MaxCurAttempts, Punishment } from "@/utils/objects";
+import { LoginErrorCode, LoginBlockType } from "@/utils/Types";
+import { HostAndPort, MaxCurAttempts, Punishment } from "@/utils/Objects";
 const { bool, byte, int, short, string, stringASCII } = StaticTypes;
 
 export class SERVER_GATEWAY_LOGIN_RESPONSE extends Packet {

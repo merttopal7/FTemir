@@ -1,6 +1,6 @@
 import { createServer, Socket, Server } from "net";
 import { EventEmitter } from "events";
-import { stream } from "@/utils/security/index";
+import { stream } from "@/utils/Security/index";
 import { Client, Remote, CreateEventHandler, Session } from "@/core/index";
 import type {
   ProxyConfig,
@@ -116,17 +116,11 @@ class Proxy {
   setupSocketHandlers(
     instance: Instance,
     id: string,
-    side: "client" | "remote"
+    side: "client" | "remote",
+    session: Session
   ): void {
     const socket = instance[side].socket;
     const security = instance[side].security;
-    const session = new Session({
-      client: {
-        id,
-        ...this.getInstanceParams(id)
-      },
-      instance
-    });
 
     const cleanup = () => this.removeInstance(id);
     socket.once("error", cleanup);
@@ -168,9 +162,15 @@ class Proxy {
             `[Client]->(${id})->(connected)`
           );
         }
-
-        this.setupSocketHandlers(instance, id, "client");
-        this.setupSocketHandlers(instance, id, "remote");
+        const session = new Session({
+          client: {
+            id,
+            ...this.getInstanceParams(id)
+          },
+          instance
+        });
+        this.setupSocketHandlers(instance, id, "client", session);
+        this.setupSocketHandlers(instance, id, "remote", session);
       }
     );
 

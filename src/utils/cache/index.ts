@@ -1,31 +1,35 @@
-class Cache {
+export class Cache {
+  private store = new Map<string, unknown>();
+  static identity: number = 0;
+  id: number;
+
   constructor() {
-    this.store = new Map();
+    this.id = ++Cache.identity;
   }
 
-  get(key) {
-    return this.store.get(key);
+  get<T>(key: string): T | undefined {
+    return this.store.get(key) as T | undefined;
   }
 
-  set(key, value) {
+  set<T>(key: string, value: T): void {
     this.store.set(key, value);
   }
 
-  has(key) {
+  has(key: string): boolean {
     return this.store.has(key);
   }
 
-  delete(key) {
-    this.store.delete(key);
+  delete(key: string): boolean {
+    return this.store.delete(key);
   }
 
-  clear() {
+  clear(): void {
     this.store.clear();
   }
 
-  size() {
+  get size(): number {
     return this.store.size;
   }
 }
 
-export const cache = new Cache();
+export const GlobalCacheStorage = new Cache();

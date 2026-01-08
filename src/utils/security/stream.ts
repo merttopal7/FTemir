@@ -112,8 +112,8 @@ class reader extends stream {
     }
 
     uint64() {
-        var value = this.buffer.readUIntLE(this.pointer, 8)
-        // var value = this.buffer.readBigUInt64LE(this.pointer);
+        // var value = this.buffer.readUIntLE(this.pointer, 8)
+        var value = this.buffer.readBigUInt64LE(this.pointer);
 		this.pointer += 8;
 		return value;
     }

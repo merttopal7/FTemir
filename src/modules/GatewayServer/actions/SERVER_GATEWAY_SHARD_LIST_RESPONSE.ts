@@ -1,5 +1,5 @@
 import { Packet, StaticTypes } from "@/core";
-import { Farm, Shard } from "@/utils/types";
+import { Farm, Shard } from "@/utils/Types";
 const { byte, string, short, stringASCII } = StaticTypes;
 
 export class SERVER_GATEWAY_SHARD_LIST_RESPONSE extends Packet {

@@ -1,5 +1,5 @@
 import { Packet, StaticTypes } from "@/core";
-import { HostAndPort, DownloadFile } from "@/utils/objects";
+import { HostAndPort, DownloadFile } from "@/utils/Objects";
 const { bool, byte, int, short, string, stringASCII } = StaticTypes;
 
 export class SERVER_GATEWAY_PATCH_RESPONSE extends Packet {
