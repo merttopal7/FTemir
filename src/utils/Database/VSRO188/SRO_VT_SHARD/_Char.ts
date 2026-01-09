@@ -1,18 +1,14 @@
 import { FTemir } from "@/FTemir/index.js";
 import { _RefObjChar } from "./_RefObjChar.ts";
 import { _RefObjCommon } from "./_RefObjCommon";
-import { Database } from "../../index.js";
-import { BaseModel } from "../../BaseModel/index.js";
+import { Database } from "../../index.ts";
+import { BaseModel } from "../../BaseModel/Base.ts";
 
-export class _Char extends BaseModel<_Char> {
+export class _Char extends BaseModel {
   static TableName = "_Char"
   private _refObjChar?: _RefObjChar;
   private _refObjCommon?: _RefObjCommon;
 
-  static query() {
-    const Shard = Database.SRO_VT_SHARD();
-    return Shard(_Char.TableName)
-  }
   CharID!: number;
   Deleted!: number;
 
