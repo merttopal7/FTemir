@@ -83,7 +83,7 @@ bun install
 Run directly from source:
 
 ```txt
-bun run src/index.ts
+bun run index.ts
 ```
 
 Or using npm scripts:
